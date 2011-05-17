@@ -294,7 +294,8 @@ public class Agent
         HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
         HttpProtocolParams.setContentCharset(params, "UTF-8");
         HttpProtocolParams.setUseExpectContinue(params, true);
-        //HttpProtocolParams.setUserAgent(params, "Android App");
+        //Send FusionInventory specific user agent
+        HttpProtocolParams.setUserAgent(params, "FusionInventory-Agent_Android");
 
         // ignore that the ssl cert is self signed
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
