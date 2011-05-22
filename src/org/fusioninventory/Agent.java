@@ -127,7 +127,6 @@ public class Agent
                 FusionInventory.log(this, " received starting inventory task", Log.INFO);
 
                 if (inventory != null) {
-                    Bundle data = msg.peekData();
 
                     if (inventory.running) {
 
@@ -295,7 +294,8 @@ public class Agent
         HttpProtocolParams.setUseExpectContinue(params, true);
         
         //Send FusionInventory specific user agent
-        HttpProtocolParams.setUserAgent(params, "FusionInventory-Agent_Android");
+        //TODO get App version from manifest or somewhere else
+        HttpProtocolParams.setUserAgent(params, "FusionInventory-Agent_Android 1.0");
 
         clientConnectionManager = new SingleClientConnManager(params, mSchemeRegistry);
         context = new BasicHttpContext();
@@ -303,6 +303,7 @@ public class Agent
         // ignore that the ssl cert is self signed
         String login = mFusionApp.getCredentialsLogin();
         if (!login.equals("")) {
+            FusionInventory.log(this, "HTTP credentials given : use it if necessary", Log.VERBOSE);
             CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
             credentialsProvider.setCredentials(new AuthScope(url.getHost(), AuthScope.ANY_PORT),
                     new UsernamePasswordCredentials(mFusionApp.getCredentialsLogin(), 

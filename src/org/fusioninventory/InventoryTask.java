@@ -44,17 +44,9 @@ public class InventoryTask {
 
         if (mContent != null) {
 
-            // KXmlSerializer serializer = new KXmlSerializer();
             XmlSerializer serializer = Xml.newSerializer();
             StringWriter writer = new StringWriter();
 
-            // serializer.setProperty(
-            // "http://xmlpull.org/v1/doc/properties.html#serializer-indentation",
-            // "   ");
-            // // also set the line separator
-            // serializer.setProperty(
-            // "http://xmlpull.org/v1/doc/properties.html#serializer-line-separator",
-            // "\n");
             try {
                 serializer.setOutput(writer);
                 serializer
@@ -133,14 +125,21 @@ public class InventoryTask {
         
         String [] categories = { 
                 "Bios",
+                "Inputs",
+                "Sensors",
+//                "Usbs",
+//                "Battery",
+                "Drives",
+                "Cpus",
                 "Hardware",
                 "Simcards",
-                "Cpus",
-                "LocationProviders",
                 "Videos",
                 "Cameras",
-                "BluetoothAdapterCategory", // <- there is already a BluetoothAdapter class in android SDK
+//                "BluetoothAdapterCategory", // <- there is already a BluetoothAdapter class in android SDK
                 "Networks",
+                "LocationProviders",
+                "Envs",
+                "Jvm",
                 "Softwares"
         };
         
@@ -186,15 +185,4 @@ public class InventoryTask {
         mEnd = new Date();
         running = false;
     }
-
-
-//    public void addProcesses() {
-//        ActivityManager  activityManager = (ActivityManager) mFusionApp.getSystemService(Service.ACTIVITY_SERVICE);
-//        
-//        List<RunningAppProcessInfo> ps = activityManager.getRunningAppProcesses();
-////        for(RunningAppProcessInfo process : ps) {
-////            content.add(new Processes(mFusionApp,process));
-////        }
-//        
-
 }

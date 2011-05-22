@@ -7,6 +7,7 @@ import org.fusioninventory.FusionInventoryApp;
 import org.xmlpull.v1.XmlSerializer;
 
 import android.content.Context;
+import android.os.Build;
 
 public class Category extends LinkedHashMap<String, String>{
 
@@ -23,6 +24,14 @@ public class Category extends LinkedHashMap<String, String>{
         mType = xType;
     }
 
+    public String put(String key, String value) {
+       //Do not add value if it's null, blank or "unkown"
+       if (value != null && !value.equals("") && !value.equals(Build.UNKNOWN)) {
+    	   return super.put(key, value);
+       } else {
+    	   return "";
+       }
+    }
     public void toXML(XmlSerializer serializer) throws IllegalArgumentException, IllegalStateException, IOException {
         
             serializer.startTag(null, mType);
